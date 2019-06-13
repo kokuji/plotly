@@ -33,13 +33,13 @@ function buildMetadata(sample) {
       const otu_labels = data.otu_labels;
       const sample_values = data.sample_values;
       // @TODO: Build a Bubble Chart using the sample data
-      let bubbleLayout = {
+      var bubbleLayout = {
         margin: {t: 0},
-        hovermode: "closests",
+        hovermode: "closest",
         xaxis: { title: "OTU ID"}        
-      }
+      };
 
-      let bubbleData = [
+      var bubbleData = [
         {
         x: otu_ids,
         y: sample_values,
@@ -52,9 +52,9 @@ function buildMetadata(sample) {
           colorscale: "Earth"
           }
         }
-      ]
+      ];
 
-      Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+      Plotly.plot("bubble", bubbleData, bubbleLayout);
       // var sdata = d3.select(`#selDataset`)
       // sdata.html("");
       // Object.entries(data).forEach((svalue) => {
@@ -64,7 +64,7 @@ function buildMetadata(sample) {
       // HINT: You will need to use slice() to grab the top 10 sample_values,
       // .slice()
       // otu_ids, and labels (10 each).
-      let pieData = [
+      var pieData = [
         {
           values: sample_values.slice(0,10),
           labels: otu_ids.slice(0,10),
@@ -74,15 +74,13 @@ function buildMetadata(sample) {
         }
       ];
 
-      let pieLayout = {
+      var pieLayout = {
         margin: {t:0, l:0},
         };
       
-      Plotly.newPlot("pie", pieData, pieLayout);
+      Plotly.plot("pie", pieData, pieLayout);
   });
-
-
-buildPlot();
+};
 
 function init() {
   // Grab a reference to the dropdown select element
@@ -112,4 +110,4 @@ function optionChanged(newSample) {
 
 // Initialize the dashboard
 init();
-}
+
